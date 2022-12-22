@@ -1,10 +1,10 @@
 import React from 'react';
 import './assets/styles/main.scss';
-import SignUp from './components/SignUp';
+import Routing from './components/Routing';
 
 function App() {
   return (
-    <SignUp/>
+    <Routing/>
   );
 }
 

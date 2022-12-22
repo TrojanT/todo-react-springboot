@@ -1,31 +1,28 @@
+import React ,{ useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignUp() {
+function SignIn() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
- 
+  
+
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+  async function handleLogin(event) {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/user/signup", {
-        userName: name,
-        password: password,
-        email: email,
-      });
-      alert("User Registration Successful");
-      setName("");
-      setPassword("");
-      setEmail("");
-      navigate("/login");
-
-    } catch {
-      alert("User Registation Failed");
-    }
+        await axios.post("http://localhost:8080/api/v1/user/login", {
+          userName: name,
+          password: password
+        })
+        .then(response => response.data === 1? navigate("/home"):alert("User Login Failed"));
+        setName("");
+        setPassword("");
+  
+      } catch {
+        alert("User Login Failed");
+      }
   }
 
   return (
@@ -55,27 +52,11 @@ function SignUp() {
               setPassword(event.target.value);
             }}
           />
-        </div>
-
-        <div className="form-group row">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-          <button onClick={handleSubmit} className="btn btn-primary mt-2">
-            Sign Up
-          </button>
+          <button className="btn btn-primary mt-2" onClick={handleLogin}>Login</button>
         </div>
       </form>
     </div>
   );
 }
 
-export default SignUp;
+export default SignIn;
