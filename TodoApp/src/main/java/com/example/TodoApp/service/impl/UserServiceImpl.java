@@ -24,4 +24,14 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
         return user.getUserName();
     }
+
+    @Override
+    public int loginUser(UserDTO userDTO) {
+        String name = userDTO.getUserName();
+        String pw = userDTO.getPassword();
+
+        User user = userRepo.findByUserName(name);
+
+        return user.getPassword().equals(pw) ? 1 : 0;
+    }
 }

@@ -18,4 +18,10 @@ public class UserController {
         String id = userService.signupUser(userDTO);
         return id;
     }
+
+    @PostMapping(path = "/login")
+    public int login(@RequestBody UserDTO userDTO){
+        int isAuth = userService.loginUser(userDTO);
+        return isAuth;
+    }
 }
