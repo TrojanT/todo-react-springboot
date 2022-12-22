@@ -15,11 +15,11 @@ function SignUp() {
         email: email,
       });
       alert("User Registration Successful");
-      setName('');
-      setPassword('');
-      setEmail('');
+      setName("");
+      setPassword("");
+      setEmail("");
     } catch {
-        alert("User Registation Failed");
+      alert("User Registation Failed");
     }
   }
 
@@ -67,11 +67,10 @@ function SignUp() {
               setEmail(event.target.value);
             }}
           />
+          <button onClick={handleSubmit} class="btn btn-primary mt-2">
+            Submit
+          </button>
         </div>
-
-        <button onClick={handleSubmit} class="btn btn-primary row mt-2">
-          Submit
-        </button>
       </form>
     </div>
   );
