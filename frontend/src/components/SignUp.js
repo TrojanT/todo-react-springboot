@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 function SignUp() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
- 
+
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
@@ -22,14 +23,16 @@ function SignUp() {
       setPassword("");
       setEmail("");
       navigate("/login");
-
     } catch {
       alert("User Registation Failed");
     }
   }
 
   return (
-    <div className="container-fluid d-flex justify-content-center">
+    <div className="container-fluid d-flex align-items-center flex-column">
+      <div className="row">
+        <Header title={"Sign Up"} />
+      </div>
       <form>
         <div className="form-group row">
           <label>User Name</label>
